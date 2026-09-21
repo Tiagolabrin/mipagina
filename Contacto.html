@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Contacto</title>
+        <script>
+        (function() {
+        const savedTema = localStorage.getItem('tema') || 'light';
+        document.documentElement.setAttribute('tema', savedTema);
+	    })();
+	    function cambiarTema() {
+	        const html = document.documentElement;
+	        const currentTema = html.getAttribute('tema');
+	        const nuevoTema = currentTema === 'dark' ? 'light' : 'dark';
+	        html.setAttribute('tema', nuevoTema);
+	        localStorage.setItem('tema', nuevoTema);
+	    }
+	    function validar(){
+	    const $nombre = document.getElementById("nombre");
+	    const $apellido = document.getElementById("apellido");
+	    const $email = document.getElementById("email");
+	    const $obra = document.getElementById("obras_sociales");
+	    const $dia = document.getElementById("dia");
+	    const $mes = document.getElementById("mes");
+	    const $anio = document.getElementById("anio");
+	    let email = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+	    /*
+	    ^ inicio de cadena
+	    [*****] todos los caracteres que se permiten usar (en esta seccion)
+	    \w representa cualquier caracter alfanumerico
+	    + 1 o mas caracteres deben haber
+	    @ arroba, se puede utilizar
+	    \. caracter que reprsent
+	    $ final de cadena
+	    */
+	    // Validar nombre
+	    if ($nombre.value.trim() === "") {
+	        $nombre.style.border = "solid red";
+	    } else {
+	    $nombre.style.border = "solid 1px #cccccc";
+	    }
+	    // Validar apellido
+	    if ($apellido.value.trim() === "") {
+	        $apellido.style.border = "solid red";
+	    } else {
+	    $apellido.style.border = "solid 1px #cccccc";
+	    }
+	    // Validar email
+	    if ($email.value.trim() === "" || !email.test($email.value)) {
+	        $email.style.border = "solid red";
+	    } else {
+	    $email.style.border = "solid 1px #cccccc";
+	    }
+	    return false;
+		}
+    </script>
+    <style> 
+      :root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --surface-color: #f5f5f5;
+    }
+    [tema="dark"] {
+        --bg-color: #1b1b1d;
+        --text-color: #e3e3e3;
+        --surface-color: #242526;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Segoe UI", sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-align: middle-center;
+    }
+    .tema-cambiar {
+        position: fixed;
+        top: 40px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tema-cambiar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .tema-cambiar img {
+        width: 24px;
+        height: 24px;
+    }
+    .tema-cambiar .moon {
+        display: none;
+    }
+    [tema="dark"] .tema-cambiar .sun {
+        display: none;
+    }
+    [tema="dark"] .tema-cambiar .moon {
+        display: block;
+    }
+      h1 {
+        text-align: center;
+      }
+      h2{
+        font-family: Arial;
+        font-size:24px;
+        text-align: center;
+      }
+      form {
+        font-family: Arial;
+        background-color: var(--bg-color);
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        /*color: black;*/
+      }
+      input[type="text"],
+      select,
+      textarea {
+        width: 95%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid;
+        margin-bottom: 12px;
+        /*background-color: var(--bg-color);*/
+        /*color: white;*/
+      }
+      select {
+        height: 36px;
+      }
+      textarea {
+        height: 100px;
+      }
+      .date-inputs {
+        display: flex;
+        gap: 10px;
+      }
+      .date-inputs input[type="text"] {
+        width: 60px;
+      }
+      input[type="submit"] {
+        background-color: #333;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+      }
+      input[type="submit"]:hover {
+        background-color: #111;
+        cursor: pointer;
+        transition: background .3s;
+      }
+      button:hover {
+        background: #222;
+        text-decoration: underline #999;
+      }
+      button{
+        font-family: Courier New;
+        cursor: pointer;
+        display: inline-block;           
+        padding: 10px 10px;
+        border-radius: 50px;
+        /*color: white;*/
+        padding: .5em 1em;
+        border: 0;
+      }
+      p{
+        text-align: middle-center;
+      }
+      input{
+        font-family: Courier New;
+        /*cursor: pointer;*/
+      }
+    .header {
+        position: sticky;
+        padding: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+        border-radius: 10px;
+        max-width: 490px;
+        margin: 1em auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        font-family: Arial;
+    }
+    .menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 0.5em;
+    }
+    .menu a {
+        padding: 10px;
+        background: #444;
+    }
+    .menu a:hover {
+        background: #222;
+        text-decoration: underline #999;
+    }
+    a:link,
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
+    a {
+        border-radius: 50px;
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="Juegos.html">Juegos</a></li>
+        <li><a href="Estadisticas.html">Estadísticas</a></li>
+        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="Contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    </header>
+<h1>Contactenos</h1>
+<h2>Tu opinión es fundamental para que esta página progrese, si quieres contactarnos puede enviarnos aqui... </h2><br>
+<form id="miFormulario">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" >
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" >
+    <label for="apellido">Email:</label>
+    <input type="text" id="email" name="email" >
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" name="observaciones"></textarea>
+    <div id="divUsoOpcional"></div>
+    <input type="submit" value="Enviar" onclick="return validar();">
+  </form>
+  <button value="Color" class="tema-cambiar" onclick="cambiarTema()" aria-label="Toggle theme">
+<img class="sun" src="sun.svg" alt="Sun" width="24" height="24">
+    <img class="moon" src="moon.svg" alt="Moon" width="24" height="24">
+    </button>
+</body>
+</html>

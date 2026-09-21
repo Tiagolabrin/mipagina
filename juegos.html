@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Juegos</title>
+			<script>
+		/*const color = document.getElementById('color');
+			color.addEventListener('click', () => {
+			document.body.classList.toggle('dark-mode');
+			});*/
+					(function() {
+					const savedTema = localStorage.getItem('tema') || 'light';
+					document.documentElement.setAttribute('tema', savedTema);
+			})();
+			function cambiarTema() {
+					const html = document.documentElement;
+					const currentTema = html.getAttribute('tema');
+					const nuevoTema = currentTema === 'dark' ? 'light' : 'dark';
+					html.setAttribute('tema', nuevoTema);
+					localStorage.setItem('tema', nuevoTema);
+			}
+		</script>
+		<style>
+			:root {
+				--bg-color: #ffffff;
+				--text-color: #333333;
+				--surface-color: #f5f5f5;
+		}
+		[tema="dark"] {
+				--bg-color: #1b1b1d;
+				--text-color: #e3e3e3;
+				--surface-color: #242526;
+		}
+		* {
+				margin: 0;
+				padding: 0;
+		}
+		body {
+				background-color: var(--bg-color);
+				color: var(--text-color);
+				font-family: "Segoe UI", sans-serif;
+				transition: background-color 0.3s ease, color 0.3s ease;
+				text-align: middle-center;
+		}
+		.tema-cambiar {
+				position: fixed;
+				top: 40px;
+				right: 20px;
+				width: 48px;
+				height: 48px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--surface-color);
+				border: none;
+				border-radius: 50%;
+				cursor: pointer;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.tema-cambiar:hover {
+				transform: scale(1.1);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+		.tema-cambiar img {
+				width: 24px;
+				height: 24px;
+		}
+		.tema-cambiar .moon {
+				display: none;
+		}
+		[tema="dark"] .tema-cambiar .sun {
+				display: none;
+		}
+		[tema="dark"] .tema-cambiar .moon {
+				display: block;
+		}
+			.header{
+			position: sticky;
+			padding: 10px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+			border-radius: 10px;
+			max-width: 490px;
+			margin: 1em auto;
+			background-color: rgba(0, 0, 0, 0.8);
+			font-family: Arial;
+			}
+			.menu ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;              
+				gap: 0.5em;
+			}
+			.menu a { 
+				padding: 10px 10px;
+				background: #444;
+			} 
+			.menu a:hover {
+				background: #222;
+				text-decoration: underline #999;
+			}
+			a:link,a:visited{
+				color: white;
+				text-decoration: none;
+			}
+			a{
+				border-radius: 50px;
+				display: block;
+				color: #fff;
+				text-decoration: none;
+				transition: background .3s;
+			}
+/*      body{
+					background-color: #222;
+					transition: background-color 0.15s, color 0.15s;
+			}
+			body.dark-mode {
+					background-color: white;
+					color: black;
+			}*/
+			main {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					align-items: center;
+					height: 70vh;
+			}
+			.juego {
+					width: 150px;
+					height: 150px;
+					margin: 20px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 20px;
+					color: white;
+					text-align: center;
+					cursor: pointer;
+					border-radius: 10px;
+					transition: background-color 0.3s;
+			}
+			.juego:hover {
+					opacity: 0.8;
+			}
+			.juego1 { background-color: #3498db; }
+			.juego2 { background-color: #e74c3c; }
+			.juego3 { background-color: #2ecc71; }
+			.juego4 { background-color: #f39c12; }
+					#color img {
+				width: 24px;
+				height: 24px;
+				transition: fill 0.3s ease;
+		}
+	</style>
+</head>
+<body>
+		<header class="header">
+<nav class="menu">
+	<ul>
+		<li><a href="index.html">Inicio</a></li>
+		<li><a href="Juegos.html">Juegos</a></li>
+		<li><a href="Estadisticas.html">Estadísticas</a></li>
+		<li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
+		<li><a href="Contacto.html">Contacto</a></li>
+	</ul>
+</nav>
+</header>
+<!-- <button value="Color" id="color"> -->
+<button value="Color" class="tema-cambiar" onclick="cambiarTema()" aria-label="Toggle theme">
+<img class="sun" src="sun.svg" alt="Sun" width="24" height="24">
+		<img class="moon" src="moon.svg" alt="Moon" width="24" height="24">
+		</button>
+<main>
+<div class="juego juego1" onclick="window.location.href='cultura.html'">Cultura General</div>
+<div class="juego juego2" onclick="window.location.href='geografia.html'">Geografia</div>
+<div class="juego juego3" onclick="window.location.href='serpiente.html'">Snake</br>(Serpiente)</div>
+</main>
+</body>
+</html>

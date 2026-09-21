@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title></title>
+    <style>
+    	body{
+    		font-size: 14px;
+    		background-color: black;
+    		color:white;
+    	}
+    	#mimensaje{
+    		font-size: 30px;
+    	}
+    	#realmentemimensaje{
+    		font-size: 24px;
+    		font-style: italic;
+    	}
+    	.padre{
+    		 display: flex;
+			gap: 10px;
+    	}
+		.image-container {
+			display: flex;
+			gap: 10px;
+		}
+		.image-container img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.vertical{
+			display: flex;
+			flex-direction: column;
+		}
+		.vertical img{
+			width: 100%;
+			height: 100%;
+		}
+		.img {
+			gap: 10px;
+			display: flex;
+		}
+		.img img{
+			padding: 10px 0;
+			width: 50%;
+			height: 50%;
+			object-fit: cover;
+		}
+		.fondo{
+			gap: 10px;
+			display: flex;
+		}
+		.fondo img{
+			width: 150%;
+			height: 100%;
+		}
+		button:hover {
+          background: #222;
+          text-decoration: underline #999;
+          transition: background .3s;
+
+        }
+        button{
+          font-family: Courier New;
+          cursor: pointer;
+          background: #222;
+          background: #444;
+          border-radius: 50px;
+          color: white;
+          padding: .5em 1em;
+          border: 0;
+          margin-block: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="window.location.href='.html'">Volver</button>
+	<p id="mimensaje">Usted me esta dando comer viendo esta publicidad. Mirá nuestra publicidad, te lo ruego :( </p>
+	<p id="realmentemimensaje">
+	"Por cada minuto que pasás en esta página vamos a salvar a estos perritos que ves en pantalla. Esto es totalmente legal, esta decisión moral te corresponde a vos. Si te vas ahora, técnicamente estás abandonando a estos animalitos. ¿Realmente podes vivir con esa culpa?" - Mr Beast</p>
+    <div class="padre"><div class="image-container">
+            <img src="1.jpg" alt="Imagen 1">
+            <img src="3.jpg" alt="Imagen 3">
+            <img src="4.jpg" alt="Imagen 4">
+        </div>
+           <div class= "vertical">
+           <img src="8.jpg" alt="Imagen 8">
+                   <img src="9.jpg" alt="Imagen 9">
+                   <img src="10.jpg" alt="Imagen 10">
+               </div></div>
+    <div class="img">
+    	<img src="2.jpg" alt="Imagen 2">
+    	<img src="5.jpg" alt="Imagen 5">
+    </div>
+     <div class="fondo">
+    	<img src="6.jpg" alt="Imagen 6">
+    	<img src="7.jpg" alt="Imagen 7">
+    </div>
+</body>
+</html>

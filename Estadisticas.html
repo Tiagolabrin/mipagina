@@ -4,12 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadísticas</title>
+   <script>
+  (function() {
+    const savedTema = localStorage.getItem("tema") || "light";
+    document.documentElement.setAttribute("tema", savedTema);
+  })();
+
+  function cambiarTema() {
+    const html = document.documentElement;
+    const currentTema = html.getAttribute("tema");
+    const nuevoTema = currentTema === "dark" ? "light" : "dark";
+
+    html.setAttribute("tema", nuevoTema);
+    localStorage.setItem("tema", nuevoTema);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById(
+      "estadisticas-container"
+    );
+
+    // Los nombres deben coincidir con los del juego
+    const score1 = localStorage.getItem("ultimoScore");
+    const total1 = localStorage.getItem("ultimoTotal");
+    const fecha1 = localStorage.getItem("ultimaFecha");
+
+    console.log("score:", score1);
+    console.log("total:", total1);
+    console.log("fecha:", fecha1);
+
+    if (
+      score1 !== null &&
+      total1 !== null &&
+      fecha1 !== null
+    ) {
+      container.innerHTML = `
+        <div class="estadistica">
+          <p>Juego 1</p>
+          <p class="score">
+            ${score1} de ${total1}
+          </p>
+          <p>respuestas correctas el ${fecha1}</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `
+        <p>No hay estadísticas disponibles.</p>
+      `;
+    }
+  });
+</script>
+
     <style>
+        :root {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --surface-color: #f5f5f5;
+    }
+    [tema="dark"] {
+        --bg-color: #1b1b1d;
+        --text-color: #e3e3e3;
+        --surface-color: #242526;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Segoe UI", sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-align: middle-center;
+    }
+    .tema-cambiar {
+        position: fixed;
+        top: 40px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .tema-cambiar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .tema-cambiar img {
+        width: 24px;
+        height: 24px;
+    }
+    .tema-cambiar .moon {
+        display: none;
+    }
+    [tema="dark"] .tema-cambiar .sun {
+        display: none;
+    }
+    [tema="dark"] .tema-cambiar .moon {
+        display: block;
+    }
         h1{
             text-align: center;
             padding: 20px;
         }
-        body{
+/*        body{
             transition: background-color 0.15s, color 0.15s;
             background-color: #222;
             color: white;
@@ -19,7 +124,7 @@
         body.dark-mode {
             background-color: white;
             color: black;
-        }
+        }*/
         .estadistica {
             background-color: #f0f0f0;
             padding: 15px;
@@ -35,12 +140,11 @@
        .header{
             position: sticky;
             padding: 10px;
-            box-shadow: 10px 10px 50px 15px black;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
             border-radius: 10px;
             max-width: 490px;
             margin: 1em auto;
-            background-color: #333;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             font-family: Arial;
         }
         .menu ul {
@@ -74,10 +178,10 @@
         }
     </style>
     </head>
-         <header class="header">
+        <header class="header">
     <nav class="menu">
       <ul>
-        <li><a href="Inicio.html">Inicio</a></li>
+        <li><a href="index.html">Inicio</a></li>
         <li><a href="Juegos.html">Juegos</a></li>
         <li><a href="Estadisticas.html">Estadísticas</a></li>
         <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
@@ -86,58 +190,13 @@
     </nav>
     </header>
     <body>
-      <input type="button" value="Color" id="color">
+<button value="Color" class="tema-cambiar" onclick="cambiarTema()" aria-label="Toggle theme">
+<img class="sun" src="sun.svg" alt="Sun" width="24" height="24">
+    <img class="moon" src="moon.svg" alt="Moon" width="24" height="24">
+    </button>
 
       <main>
         <h1>Estadísticas del Quiz</h1>
         <div id="estadisticas-container"></div>
       </main>
-   <script>
-    const botonColor = document.getElementById("color");
-
-    botonColor.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-    });
-
-    const container = document.getElementById(
-      "estadisticas-container"
-    );
-
-    // Obtener los datos guardados del juego 1
-    const score1 = localStorage.getItem("ultimoScore1");
-    const total1 = localStorage.getItem("ultimoTotal1");
-    const fecha1 = localStorage.getItem("ultimaFecha1");
-
-    // Mostrar en consola para comprobar si existen
-    console.log("score1:", score1);
-    console.log("total1:", total1);
-    console.log("fecha1:", fecha1);
-
-    let contenido = "";
-
-    if (
-      score1 !== null &&
-      total1 !== null &&
-      fecha1 !== null
-    ) {
-      contenido = `
-        <p>
-          Juego 1:
-          ${score1} de ${total1}
-          respuestas correctas
-          el ${fecha1}
-        </p>
-      `;
-    } else {
-      contenido = `
-        <p>
-          No hay estadísticas disponibles.
-        </p>
-      `;
-    }
-
-    container.innerHTML = contenido;
-  </script>
-
     </body>
-</html>
