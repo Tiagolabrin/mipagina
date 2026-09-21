@@ -3,8 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <title>Quiz Rápido</title>
+  <script>
+      (function() {
+              const savedTema = localStorage.getItem('tema') || 'light';
+              document.documentElement.setAttribute('tema', savedTema);
+      })();
+      function cambiarTema() {
+              const html = document.documentElement;
+              const currentTema = html.getAttribute('tema');
+              const nuevoTema = currentTema === 'dark' ? 'light' : 'dark';
+              html.setAttribute('tema', nuevoTema);
+              localStorage.setItem('tema', nuevoTema);
+              if (typeof dibujar === 'function') {
+                  dibujar();
+              }
+      }
+      </script>
   <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 2em auto; background-color: #222; color: white}
+        :root {
+                --bg-color: #ffffff;
+                --text-color: #333333;
+                --surface-color: #f5f5f5;
+        }
+        [tema="dark"] {
+                --bg-color: #000;
+                --text-color: #e3e3e3;
+                --surface-color: #242526;
+        }
+        body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                font-family: "Segoe UI", sans-serif;
+                transition: background-color 0.3s ease, color 0.3s ease;
+                text-align: middle-center;
+        }
+        form{
+                max-width: 560px; 
+                margin: auto;
+        }
+        .tema-cambiar {
+                position: fixed;
+                top: 40px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--surface-color);
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tema-cambiar:hover {
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .tema-cambiar img {
+                width: 24px;
+                height: 24px;
+        }
+        .tema-cambiar .moon {
+                display: none;
+        }
+        [tema="dark"] .tema-cambiar .sun {
+                display: none;
+        }
+        [tema="dark"] .tema-cambiar .moon {
+                display: block;
+        }
+        .header{
+            position: sticky;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+            border-radius: 10px;
+            max-width: 490px;
+            margin: 1em auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-family: Arial;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;              
+            gap: 0.5em;
+        }
+        .menu a { 
+            padding: 10px 10px;
+            background: #444;
+        } 
+        .menu a:hover {
+            background: #222;
+            text-decoration: underline #999;
+        }
+        a:link,a:visited{
+            color: white;
+            text-decoration: none;
+        }
+        a{
+            border-radius: 50px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            transition: background .3s;
+        }
+        input,
+        select,
+        textarea,
+        button,
+        form {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
         fieldset { margin-bottom: 1.5em; }
         legend { font-weight: bold; }
         .resultado { margin-top: 1em; font-size: 1.2em; }
@@ -14,49 +126,46 @@
         .incorrecto {
             background-color: #BF0101!important;
         }
-        header{
-          position: sticky;
-          padding: 10px;
+        h1{
+            text-align: center;
         }
-        header button:hover {
-          background: #222;
+        button:hover {
+          /*background: #222;*/
           text-decoration: underline #999;
         }
-        header button{
-          font-family: Courier New;
-          cursor: pointer;
-          background: #222;
-          display: inline-block;           
-          padding: 10px 10px;
-          background: #444;
-          border-radius: 50px;
-          transition: background .3s;
-          color: white;
-          padding: .5em 1em;
-          border: 0;
-          /* la transición debe ir aquí */
-          transition: background-color .5s, color .5s, opacity .5s;
-        }
-        form button{
-            background-color: grey;
-            color:white;
-        }
-        body {
-            transition: background-color 0.15s, color 0.15s;
-            background-color: black;
-            color: white; 
-        }
-        body.dark-mode {
-            background-color: white;
-            color: black;
+        form button {
+            font-family: "Courier New", monospace;
+            padding: 0.7rem 1.4rem;
+            margin: 1rem auto;
+            display: block;
+            border: 0;
+            border-radius: 999px;
+            background: var(--surface-color);
+            color: var(--text-color);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color .3s ease, color .3s ease, transform .2s ease, box-shadow .3s ease;
         }
   </style>
 </head>
 <body>
-<input type=button value="Color" id="color"></input>
-    <header><button onclick="window.location.href='Juegos.html'">Volver</button></header></header>
+            <header class="header">
+<nav class="menu">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="Juegos.html">Juegos</a></li>
+        <li><a href="Estadisticas.html">Estadísticas</a></li>
+        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="Contacto.html">Contacto</a></li>
+    </ul>
+</nav>
+</header>
+<button value="Color" class="tema-cambiar" onclick="cambiarTema()" aria-label="Toggle theme">
+<img class="sun" src="sun.svg" alt="Sun" width="24" height="24">
+        <img class="moon" src="moon.svg" alt="Moon" width="24" height="24">
+        </button>
   <h1>Quiz de Cultura General</h1>
-
+  <form id="quiz-form">
 <fieldset>
  <legend>1) ¿Cómo se le conoce a la selección de fútbol argentina?</legend>
  <label><input type="radio" name="q1" value="La fiera celeste"> La fiera celeste</label><br>
@@ -128,18 +237,11 @@
 </fieldset>
 <fieldset>
 <button type="button" onclick="calcularPuntaje1()">Ver puntaje</button>
-
+</form>
 <div class="resultado" id="resultado"></div>
 <script>
- const botonColor = document.getElementById("color");
-
-    if (botonColor) {
-      botonColor.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-      });
-    }
-
     // Respuestas correctas del juego
+  (function() {
     const respuestasCorrectas = {
       q1: "La Albiceleste",
       q2: "José Hernández",
@@ -153,7 +255,7 @@
       q10: "Ministro Pistarini"
     };
 
-    function calcularPuntaje1() {
+    window.calcularPuntaje1 = function() {
       let score = 0;
       let respondidas = 0;
 
@@ -214,14 +316,22 @@
       }
 
       // Guardar los datos para la página de estadísticas
-        localStorage.setItem("ultimoScore1", score);
-        localStorage.setItem("ultimoTotal1", respondidas);
-        localStorage.setItem(
-          "ultimaFecha1",
-          new Date().toLocaleDateString("es-AR")
-        );
+      const historial = JSON.parse(localStorage.getItem("historialPartidas")) || [];
 
-    }
-  </script>
+      const nuevaPartida = {
+        juego: "Cultura",
+        score: score,
+        total: respondidas,
+        fecha: new Date().toLocaleDateString()
+      };
+
+      historial.push(nuevaPartida);
+      localStorage.setItem("historialPartidas", JSON.stringify(historial));
+
+      console.log("Nueva partida guardada:", nuevaPartida);
+      console.log("Historial completo en localStorage:", historial);
+    };
+  })();
+</script>
 </body>
 </html>

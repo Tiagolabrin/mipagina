@@ -20,7 +20,7 @@
         }
         </script>
         <style>
-            :root {
+        :root {
                 --bg-color: #ffffff;
                 --text-color: #333333;
                 --surface-color: #f5f5f5;
@@ -296,12 +296,24 @@
        } else {
            resultado.textContent += " 😔 Sigue intentando";
        }
-   // Guardar en localStorage usando setItem
-    localStorage.setItem("ultimoScore", score);
-    localStorage.setItem("ultimoTotal", total);
-    localStorage.setItem("ultimaFecha", new Date().toLocaleDateString());
+
+       // Guardar en localStorage usando un arreglo de partidas
+       const historial = JSON.parse(localStorage.getItem("historialPartidas")) || [];
+
+       const nuevaPartida = {
+         juego: "Geografia",
+         score: score,
+         total: total,
+         fecha: new Date().toLocaleDateString()
+       };
+
+       historial.push(nuevaPartida);
+       localStorage.setItem("historialPartidas", JSON.stringify(historial));
+
+       console.log("Nueva partida de Geografía guardada:", nuevaPartida);
+       console.log("Historial completo en localStorage:", historial);
 };
 })();
-  </script>
+</script>
 </body>
 </html>
