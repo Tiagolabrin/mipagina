@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Rápido</title>
+  <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 2em auto; background-color: #222; color: white}
+        fieldset { margin-bottom: 1.5em; }
+        legend { font-weight: bold; }
+        .resultado { margin-top: 1em; font-size: 1.2em; }
+        .correcto {
+            background-color: #198023 !important;
+        }
+        .incorrecto {
+            background-color: #BF0101!important;
+        }
+        header{
+          position: sticky;
+          padding: 10px;
+        }
+        header button:hover {
+          background: #222;
+          text-decoration: underline #999;
+        }
+        header button{
+          font-family: Courier New;
+          cursor: pointer;
+          background: #222;
+          display: inline-block;           
+          padding: 10px 10px;
+          background: #444;
+          border-radius: 50px;
+          transition: background .3s;
+          color: white;
+          padding: .5em 1em;
+          border: 0;
+          /* la transición debe ir aquí */
+          transition: background-color .5s, color .5s, opacity .5s;
+        }
+        form button{
+            background-color: grey;
+            color:white;
+        }
+        body {
+            transition: background-color 0.15s, color 0.15s;
+            background-color: black;
+            color: white; 
+        }
+        body.dark-mode {
+            background-color: white;
+            color: black;
+        }
+  </style>
+</head>
+<body>
+<input type=button value="Color" id="color"></input>
+    <header><button onclick="window.location.href='Juegos.html'">Volver</button></header></header>
+  <h1>Quiz de Cultura General</h1>
+
+<fieldset>
+ <legend>1) ¿Cómo se le conoce a la selección de fútbol argentina?</legend>
+ <label><input type="radio" name="q1" value="La fiera celeste"> La fiera celeste</label><br>
+ <label><input type="radio" name="q1" value="Los tangos"> Los tangos</label><br>
+ <label><input type="radio" name="q1" value="La del che"> La del che</label><br>
+ <label><input type="radio" name="q1" value="La albiceleste"> La albiceleste</label>
+</fieldset>
+<fieldset>
+ <legend>2) ¿Quién es el autor de la novela "Martín Fierro"?</legend>
+ <label><input type="radio" name="q2" value="José Hernández"> José Hernández</label><br>
+ <label><input type="radio" name="q2" value="Esteban Echeverría"> Esteban Echeverría</label><br>
+ <label><input type="radio" name="q2" value="Juan Manuel de Rosas"> Juan Manuel de Rosas</label><br>
+ <label><input type="radio" name="q2" value="Vicente López y Planes"> Vicente López y Planes</label>
+</fieldset>
+<fieldset>
+<legend>3) ¿Qué argentino ganó el premio Nobel de Literatura?</legend>
+ <label><input type="radio" name="q3" value="Jorge Luis Borges"> Jorge Luis Borges</label><br>
+ <label><input type="radio" name="q3" value="Julio Cortázar"> Julio Cortázar</label><br>
+ <label><input type="radio" name="q3" value="Ernesto Sábato"> Ernesto Sábato</label><br>
+ <label><input type="radio" name="q3" value="Ninguno"> Ninguno</label>
+</fieldset>
+<fieldset>
+ <legend>4) ¿Qué era y de qué color era la Divisa Punzó?</legend>
+ <label><input type="radio" name="q4" value="Era de color rojo, y las personas que la usaban habían matado alguna vez a un unitario"> Era de color rojo, y las personas que la usaban habían matado alguna vez a un unitario</label><br>
+ <label><input type="radio" name="q4" value="Era una banda de color rojo, símbolo del federalismo y lealtad a Rosas"> Era una banda de color rojo, símbolo del federalismo y lealtad a Rosas</label><br>
+ <label><input type="radio" name="q4" value="Era de color blanca, y todos aquellos que la usaban estaban en contra de la guerra civil"> Era de color blanca, y todos aquellos que la usaban estaban en contra de la guerra civil</label>
+</fieldset>
+<fieldset>
+ <legend>5) ¿Cuántas provincias tiene Argentina?</legend>
+ <label><input type="radio" name="q5" value="23"> 23</label><br>
+ <label><input type="radio" name="q5" value="20"> 20</label><br>
+ <label><input type="radio" name="q5" value="30"> 30</label><br>
+ <label><input type="radio" name="q5" value="25"> 25</label>
+</fieldset>
+<fieldset>
+ <legend>6) ¿De dónde proviene el nombre "Argentina" y qué significa?</legend>
+ <label><input type="radio" name="q6" value="Ninguna de las anteriores"> Ninguna de las anteriores</label><br>
+ <label><input type="radio" name="q6" value="Del latín y significa plata"> Del latín y significa "plata"</label><br>
+ <label><input type="radio" name="q6" value="Del griego y significa aguas mansas"> Del griego y significa "aguas mansas"</label><br>
+ <label><input type="radio" name="q6" value="De las lenguas indígenas y significa aire de los dioses"> De las lenguas indígenas y significa "aire de los dioses"</label>
+</fieldset>
+<fieldset>
+ <legend>7) ¿De qué país se independizó Argentina?</legend>
+ <label><input type="radio" name="q7" value="Inglaterra"> Inglaterra</label><br>
+ <label><input type="radio" name="q7" value="España"> España</label><br>
+ <label><input type="radio" name="q7" value="Francia"> Francia</label><br>
+ <label><input type="radio" name="q7" value="Portugal"> Portugal</label>
+</fieldset>
+<fieldset>
+ <legend>8) ¿Cuándo se convirtió Tierra del Fuego en parte de Argentina?</legend>
+ <label><input type="radio" name="q8" value="1884"> 1884</label><br>
+ <label><input type="radio" name="q8" value="1880"> 1880</label><br>
+ <label><input type="radio" name="q8" value="1890"> 1890</label><br>
+ <label><input type="radio" name="q8" value="1885"> 1885</label>
+</fieldset>
+<fieldset>
+ <legend>9) ¿Qué fue la Conquista del Desierto entre 1878-1885?</legend>
+ <label><input type="radio" name="q9" value="Fue la campaña militar del presidente Julio Argentino Roca con fin de la conquista de la patagonia"> Fue la campaña militar del presidente Julio Argentino Roca, con fin de la conquista de la patagonia</label><br>
+ <label><input type="radio" name="q9" value="Fue una expedición científica"> Fue una expedición científica</label><br>
+ <label><input type="radio" name="q9" value="Fue un proceso de colonización pacífica"> Fue un proceso de colonización pacífica</label><br>
+ <label><input type="radio" name="q9" value="Fue la construcción del ferrocarril"> Fue la construcción del ferrocarril</label>
+</fieldset>
+<fieldset>
+ <legend>10) ¿Cuál es el aeropuerto internacional más importante de Argentina?</legend>
+ <label><input type="radio" name="q10" value="Ministro Pistarini"> Ministro Pistarini</label><br>
+ <label><input type="radio" name="q10" value="Benjamín Matienzo"> Benjamín Matienzo</label><br>
+ <label><input type="radio" name="q10" value="Jorge Newbery"> Jorge Newbery</label><br>
+ <label><input type="radio" name="q10" value="Ambrosio Taravella"> Ambrosio Taravella</label>
+</fieldset>
+<fieldset>
+<button type="button" onclick="calcularPuntaje1()">Ver puntaje</button>
+
+<div class="resultado" id="resultado"></div>
+<script>
+ const botonColor = document.getElementById("color");
+
+    if (botonColor) {
+      botonColor.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+    }
+
+    // Respuestas correctas del juego
+    const respuestasCorrectas = {
+      q1: "La Albiceleste",
+      q2: "José Hernández",
+      q3: "Ninguno",
+      q4: "Era una banda de color rojo, símbolo del federalismo y lealtad a Rosas",
+      q5: "23",
+      q6: "Del latín y significa plata",
+      q7: "España",
+      q8: "1884",
+      q9: "Fue la campaña militar del presidente Julio Argentino Roca con fin de la conquista de la patagonia",
+      q10: "Ministro Pistarini"
+    };
+
+    function calcularPuntaje1() {
+      let score = 0;
+      let respondidas = 0;
+
+      // Recorrer las preguntas
+      for (const nombre in respuestasCorrectas) {
+        const respuestaCorrecta = respuestasCorrectas[nombre];
+        const radios = document.getElementsByName(nombre);
+
+        let preguntaRespondida = false;
+
+        // Revisar las opciones de la pregunta
+        for (const radio of radios) {
+          const contenedor = radio.parentElement;
+
+          // Quitar estilos anteriores
+          contenedor.classList.remove("correcto", "incorrecto");
+
+          if (radio.checked) {
+            preguntaRespondida = true;
+            respondidas++;
+
+            if (radio.value === respuestaCorrecta) {
+              score++;
+              contenedor.classList.add("correcto");
+            } else {
+              contenedor.classList.add("incorrecto");
+            }
+
+            // Ya encontramos la respuesta seleccionada
+            break;
+          }
+        }
+
+        if (!preguntaRespondida) {
+          console.log(`La pregunta ${nombre} no fue respondida`);
+        }
+      }
+
+      const resultado = document.getElementById("resultado");
+
+      // Si no respondió ninguna pregunta
+      if (respondidas === 0) {
+        resultado.textContent = "No respondiste ninguna pregunta.";
+        return;
+      }
+
+      // Calcular porcentaje solamente sobre las respondidas
+      const porcentaje = Math.round((score / respondidas) * 100);
+
+      resultado.textContent =
+        `Obtuviste ${score} de ${respondidas} respuestas correctas ` +
+        `(${porcentaje}%).`;
+
+      if (porcentaje >= 50) {
+        resultado.textContent += " 🎉🎉";
+      } else {
+        resultado.textContent += " 😔 Sigue intentando";
+      }
+
+      // Guardar los datos para la página de estadísticas
+        localStorage.setItem("ultimoScore1", score);
+        localStorage.setItem("ultimoTotal1", respondidas);
+        localStorage.setItem(
+          "ultimaFecha1",
+          new Date().toLocaleDateString("es-AR")
+        );
+
+    }
+  </script>
+</body>
+</html>

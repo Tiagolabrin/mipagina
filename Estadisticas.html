@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas</title>
+    <style>
+        h1{
+            text-align: center;
+            padding: 20px;
+        }
+        body{
+            transition: background-color 0.15s, color 0.15s;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        body.dark-mode {
+            background-color: white;
+            color: black;
+        }
+        .estadistica {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+       .header{
+            position: sticky;
+            padding: 10px;
+            box-shadow: 10px 10px 50px 15px black;
+            border-radius: 10px;
+            max-width: 490px;
+            margin: 1em auto;
+            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-family: Arial;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;              
+            gap: 0.5em;
+        }
+        .menu a { 
+            padding: 10px 10px;
+            background: #444;
+        } 
+        .menu a:hover {
+            background: #222;
+            text-decoration: underline #999;
+        }
+        a:link,a:visited{
+            color: white;
+            text-decoration: none;
+        }
+        a{
+            border-radius: 50px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            transition: background .3s;
+        }
+        main {
+            font-size: 24px;
+        }
+    </style>
+    </head>
+         <header class="header">
+    <nav class="menu">
+      <ul>
+        <li><a href="Inicio.html">Inicio</a></li>
+        <li><a href="Juegos.html">Juegos</a></li>
+        <li><a href="Estadisticas.html">Estadísticas</a></li>
+        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="Contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    </header>
+    <body>
+      <input type="button" value="Color" id="color">
+
+      <main>
+        <h1>Estadísticas del Quiz</h1>
+        <div id="estadisticas-container"></div>
+      </main>
+   <script>
+    const botonColor = document.getElementById("color");
+
+    botonColor.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+    const container = document.getElementById(
+      "estadisticas-container"
+    );
+
+    // Obtener los datos guardados del juego 1
+    const score1 = localStorage.getItem("ultimoScore1");
+    const total1 = localStorage.getItem("ultimoTotal1");
+    const fecha1 = localStorage.getItem("ultimaFecha1");
+
+    // Mostrar en consola para comprobar si existen
+    console.log("score1:", score1);
+    console.log("total1:", total1);
+    console.log("fecha1:", fecha1);
+
+    let contenido = "";
+
+    if (
+      score1 !== null &&
+      total1 !== null &&
+      fecha1 !== null
+    ) {
+      contenido = `
+        <p>
+          Juego 1:
+          ${score1} de ${total1}
+          respuestas correctas
+          el ${fecha1}
+        </p>
+      `;
+    } else {
+      contenido = `
+        <p>
+          No hay estadísticas disponibles.
+        </p>
+      `;
+    }
+
+    container.innerHTML = contenido;
+  </script>
+
+    </body>
+</html>
